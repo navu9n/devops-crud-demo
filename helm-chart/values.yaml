@@ -1,0 +1,60 @@
+replicaCount: 1
+
+image:
+  repository: navu9n/devops-crud-demo
+  pullPolicy: Always
+  tag: "latest"
+
+containerPort: 3000
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 3000
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 3000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: ""
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+# For HTTPRoute creation (Gateway API)
+httpRoute:
+  enabled: false     # Set to true only if you are using Gateway API (instead of ingress)
+  host: "devops-crud-demo.local"
+  parentRefs:
+    - name: "my-gateway"
+      namespace: "default"
+
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 3000
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+volumes: []
+volumeMounts: []
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+serviceAccount:
+  create: true
+  name: ""
