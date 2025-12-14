@@ -145,7 +145,7 @@ Monitoring enables:
 
 **Navjot Singh**
 Cloud / DevOps Engineer
-GitHub: 
+GitHub: https://github.com/navu9n/devops-crud-demo/
 
 ---
 
